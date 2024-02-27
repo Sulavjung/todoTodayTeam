@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { Link } from "react-router-dom";
 
-function App() {
+function Home() {
   const [teamData, setTeamData] = useState([]);
 
   useEffect(() => {
@@ -17,28 +18,30 @@ function App() {
         <header className="App-header">
           <h1>Team TodoToday</h1>
         </header>
-        <main>
+        <main className="teams">
           <div className="team-list">
             {teamData.map((member) => (
-              <div key={member.id} className="team-member">
-                <img
-                  className="profImage"
-                  src={`https://api.multiavatar.com/${encodeURIComponent(
-                    member.name
-                  )}.png`}
-                  alt=""
-                />
-                <h2>{member.name}</h2>
-                <p>
-                  <strong>Email:</strong> {member.email}
-                </p>
-                <p>
-                  <strong>Role:</strong> {member.role}
-                </p>
-                <p>
-                  <strong>Hobby:</strong> {member.hobby}
-                </p>
-              </div>
+              <Link className="linkBox" to={`/${member.name.split(" ")[0]}`}>
+                <div key={member.id} className="team-member">
+                  <img
+                    className="profImage"
+                    src={`https://api.multiavatar.com/${encodeURIComponent(
+                      member.name
+                    )}.png`}
+                    alt=""
+                  />
+                  <h2>{member.name}</h2>
+                  <p>
+                    <strong>Email:</strong> {member.email}
+                  </p>
+                  <p>
+                    <strong>Role:</strong> {member.role}
+                  </p>
+                  <p>
+                    <strong>Hobby:</strong> {member.hobby}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         </main>
@@ -47,4 +50,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
