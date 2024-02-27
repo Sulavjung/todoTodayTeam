@@ -5,9 +5,9 @@ function App() {
   const [teamData, setTeamData] = useState([]);
 
   useEffect(() => {
-    fetch("54.219.136.176/teams")
+    fetch("http://52.52.61.214:3001/teams")
       .then((response) => response.json())
-      .then((data) => setTeamData(data))
+      .then((data) => setTeamData(data ? data : []))
       .catch((error) => console.error("Error fetching team data:", error));
   }, []);
 
